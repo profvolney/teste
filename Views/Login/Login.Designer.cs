@@ -2,7 +2,7 @@
 
 namespace RestauranteUnicode
 {
-    partial class RestauranteUnicode
+    partial class Login
     {
         /// <summary>
         ///  Required designer variable.
@@ -30,17 +30,17 @@ namespace RestauranteUnicode
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RestauranteUnicode));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             flowLayoutPanel1 = new FlowLayoutPanel();
             label1 = new Label();
             panel3 = new Panel();
             button1 = new Button();
             panel1 = new Panel();
             panel2 = new Panel();
-            textBoxCustom2 = new TextBoxCustom();
-            textBoxCustom1 = new TextBoxCustom();
-            btnCadastrar = new ButtonCustom();
-            btnLogin = new ButtonCustom();
+            buttonCustom2 = new ButtonCustom();
+            buttonCustom1 = new ButtonCustom();
+            textBox2 = new TextBox();
+            textBox1 = new TextBox();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
@@ -64,17 +64,17 @@ namespace RestauranteUnicode
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Bauhaus 93", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(255, 192, 128);
             label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(329, 36);
+            label1.Size = new Size(346, 37);
             label1.TabIndex = 0;
             label1.Text = "UNICODE Restaurante";
             // 
             // panel3
             // 
-            panel3.Location = new Point(338, 3);
+            panel3.Location = new Point(355, 3);
             panel3.Name = "panel3";
             panel3.Size = new Size(390, 41);
             panel3.TabIndex = 11;
@@ -87,10 +87,11 @@ namespace RestauranteUnicode
             button1.Dock = DockStyle.Right;
             button1.FlatStyle = FlatStyle.Flat;
             button1.ForeColor = SystemColors.ButtonFace;
-            button1.Location = new Point(734, 3);
+            button1.Location = new Point(3, 50);
             button1.Name = "button1";
-            button1.Size = new Size(56, 41);
+            button1.Size = new Size(56, 0);
             button1.TabIndex = 10;
+            button1.Text = "teste";
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
@@ -108,10 +109,10 @@ namespace RestauranteUnicode
             // panel2
             // 
             panel2.BackColor = SystemColors.Info;
-            panel2.Controls.Add(textBoxCustom2);
-            panel2.Controls.Add(textBoxCustom1);
-            panel2.Controls.Add(btnCadastrar);
-            panel2.Controls.Add(btnLogin);
+            panel2.Controls.Add(buttonCustom2);
+            panel2.Controls.Add(buttonCustom1);
+            panel2.Controls.Add(textBox2);
+            panel2.Controls.Add(textBox1);
             panel2.Controls.Add(label4);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(label2);
@@ -122,81 +123,77 @@ namespace RestauranteUnicode
             panel2.Size = new Size(600, 456);
             panel2.TabIndex = 2;
             // 
-            // textBoxCustom2
+            // buttonCustom2
             // 
-            textBoxCustom2.Location = new Point(172, 240);
-            textBoxCustom2.Name = "textBoxCustom2";
-            textBoxCustom2.Padding = new Padding(7);
-            textBoxCustom2.Size = new Size(250, 30);
-            textBoxCustom2.TabIndex = 18;
+            buttonCustom2.BackColor = Color.Tomato;
+            buttonCustom2.FlatAppearance.BorderSize = 0;
+            buttonCustom2.FlatStyle = FlatStyle.Flat;
+            buttonCustom2.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            buttonCustom2.ForeColor = Color.White;
+            buttonCustom2.Location = new Point(172, 349);
+            buttonCustom2.Name = "buttonCustom2";
+            buttonCustom2.Size = new Size(250, 40);
+            buttonCustom2.TabIndex = 20;
+            buttonCustom2.Text = "Cadastre-se";
+            buttonCustom2.UseVisualStyleBackColor = false;
+            buttonCustom2.Click += buttonCustom2_Click;
             // 
-            // textBoxCustom1
+            // buttonCustom1
             // 
-            textBoxCustom1.Location = new Point(172, 140);
-            textBoxCustom1.Name = "textBoxCustom1";
-            textBoxCustom1.Padding = new Padding(7);
-            textBoxCustom1.Size = new Size(250, 30);
-            textBoxCustom1.TabIndex = 17;
+            buttonCustom1.BackColor = Color.Tomato;
+            buttonCustom1.FlatAppearance.BorderSize = 0;
+            buttonCustom1.FlatStyle = FlatStyle.Flat;
+            buttonCustom1.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            buttonCustom1.ForeColor = Color.White;
+            buttonCustom1.Location = new Point(172, 281);
+            buttonCustom1.Name = "buttonCustom1";
+            buttonCustom1.Size = new Size(250, 40);
+            buttonCustom1.TabIndex = 0;
+            buttonCustom1.Text = "Entrar";
+            buttonCustom1.UseVisualStyleBackColor = false;
+            buttonCustom1.Click += buttonCustom1_Click;
             // 
-            // btnCadastrar
+            // textBox2
             // 
-            btnCadastrar.BackColor = Color.Tomato;
-            btnCadastrar.FlatAppearance.BorderSize = 0;
-            btnCadastrar.FlatStyle = FlatStyle.Flat;
-            btnCadastrar.Font = new Font("Britannic Bold", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCadastrar.ForeColor = Color.White;
-            btnCadastrar.Location = new Point(172, 370);
-            btnCadastrar.Name = "btnCadastrar";
-            btnCadastrar.Size = new Size(250, 40);
-            btnCadastrar.TabIndex = 16;
-            btnCadastrar.Text = "Cadastre-se";
-            btnCadastrar.UseVisualStyleBackColor = false;
-            btnCadastrar.Click += btnCadastrar_Click;
-            btnCadastrar.KeyDown += btnCadastrar_KeyDown;
+            textBox2.Location = new Point(172, 231);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(250, 23);
+            textBox2.TabIndex = 18;
             // 
-            // btnLogin
+            // textBox1
             // 
-            btnLogin.BackColor = Color.Tomato;
-            btnLogin.FlatAppearance.BorderSize = 0;
-            btnLogin.FlatStyle = FlatStyle.Flat;
-            btnLogin.Font = new Font("Britannic Bold", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnLogin.ForeColor = Color.White;
-            btnLogin.Location = new Point(172, 292);
-            btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(250, 40);
-            btnLogin.TabIndex = 15;
-            btnLogin.Text = "Entrar";
-            btnLogin.UseVisualStyleBackColor = false;
-            btnLogin.Click += btnLogin_Click;
-            btnLogin.KeyDown += btnLogin_KeyDown;
+            textBox1.Location = new Point(172, 135);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(250, 23);
+            textBox1.TabIndex = 17;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Britannic Bold", 26.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Microsoft Sans Serif", 26.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.Location = new Point(234, 18);
             label4.Name = "label4";
-            label4.Size = new Size(103, 38);
+            label4.Size = new Size(101, 39);
             label4.TabIndex = 10;
             label4.Text = "Login";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Britannic Bold", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.Location = new Point(172, 188);
             label3.Name = "label3";
-            label3.Size = new Size(78, 27);
+            label3.Size = new Size(82, 29);
             label3.TabIndex = 9;
             label3.Text = "Senha";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Britannic Bold", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.Location = new Point(172, 89);
             label2.Name = "label2";
-            label2.Size = new Size(78, 27);
+            label2.Size = new Size(82, 29);
             label2.TabIndex = 8;
             label2.Text = "E-mail";
             // 
@@ -210,7 +207,7 @@ namespace RestauranteUnicode
             checkBox1.Text = "Esqueceu a senha?";
             checkBox1.UseVisualStyleBackColor = true;
             // 
-            // RestauranteUnicode
+            // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -223,7 +220,7 @@ namespace RestauranteUnicode
             FormBorderStyle = FormBorderStyle.None;
             MaximumSize = new Size(800, 500);
             MinimumSize = new Size(800, 500);
-            Name = "RestauranteUnicode";
+            Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UnicodeFormStart";
             flowLayoutPanel1.ResumeLayout(false);
@@ -244,12 +241,10 @@ namespace RestauranteUnicode
         private Label label3;
         private Panel panel3;
         private Button button1;
-        private Label label4;
-        private TextBoxCustom txtSenha;
-        private TextBoxCustom txtEmail;
-        private ButtonCustom btnLogin;
-        private ButtonCustom btnCadastrar;
-        private TextBoxCustom textBoxCustom2;
-        private TextBoxCustom textBoxCustom1;
+        private Label label4;         
+        private TextBox textBox2;
+        private TextBox textBox1;
+        private ButtonCustom buttonCustom2;
+        private ButtonCustom buttonCustom1;
     }
 }

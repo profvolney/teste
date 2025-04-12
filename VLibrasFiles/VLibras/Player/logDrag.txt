@@ -1,0 +1,50 @@
+
+4/10/2025 12:46:20 AM
+GetLastOpenWindows()
+GetLastOpenWindows(): numWindows = 4
+FindWindows()
+FindWindows(): elementos de UI abertos = 7
+hwnds[0] é IntPtr.Zero
+hwnds[1] é IntPtr.Zero
+hwnds[2] é IntPtr.Zero
+hwnds[3] é IntPtr.Zero
+hwnds[0]: não é nulo.
+hwnds[1]: não é nulo.
+hwnds[2]: não é nulo.
+hwnds[3]: não é nulo.
+
+SetWindow()
+Janela 1
+
+GetTextViaClipboard()
+Tentativa 1
+GetTextViaClipboard: result = []
+String.IsNullOrWhiteSpace(result): True
+Tentativa 2
+GetTextViaClipboard: result = []
+String.IsNullOrWhiteSpace(result): True
+Tentativa 3
+GetTextViaClipboard: result = []
+String.IsNullOrWhiteSpace(result): True
+GetTextViaClipboard: result é nulo ou vazio.
+
+GetTextFromWin32Api() activeWinPtr = 918586
+GetTextFromWin32Api() activeThreadId = 14888
+GetTextFromWin32Api() processId = 6380
+GetTextFromWin32Api(): activeThreadId != currentThreadId
+GetTextFromWin32Api(): textlength = 1
+GetTextFromWin32Api(): selstart = 0
+GetTextFromWin32Api(): selend = 1
+GetTextFromWin32Api(): value = 
+GetTextFromWin32Api(): retornou null
+
+GetTextFromAutomationElement: element = System.Windows.Automation.AutomationElement
+GetTextFromAutomationElement: pattern = System.Windows.Automation.ValuePattern
+((ValuePattern) pattern).Current.Value = Player
+
+Texto da janela 1: Player
+
+GetHWndByStr()
+GetHWndByStr(): foreach
+GetHWndByStr(): hWnd = 0
+Texto final capturado: Player

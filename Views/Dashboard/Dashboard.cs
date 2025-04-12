@@ -8,7 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AxWMPLib;
 using Microsoft.Data.SqlClient;
+using WMPLib;
+
 
 namespace RestauranteUnicode
 {
@@ -47,8 +50,56 @@ namespace RestauranteUnicode
             {
                 MessageBox.Show("Erro ao inserir no banco de dados!" + ex.Message);
             }
-            
+
 
         }
-    }
+
+    // Método para iniciar o player do VLibras 
+    private void buttonCustom1_Click(object sender, EventArgs e)
+            {
+                try
+                {
+
+                // Caminho para o executáável do VLibras player 
+                string vlibrasPath = @"C:\Users\jason\Source\Repos\teste\VLibrasFiles\VLibras\Player\vlibrasPlayer.exe";
+
+                    // Verifica se o arquivo existe antes de tentar iniciá-lo
+                    if (!System.IO.File.Exists(vlibrasPath))
+                    {
+                        MessageBox.Show("O executável do VLibras player não foi encontrado no caminho especificado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Inicia o VLibras player
+                    System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = vlibrasPath,
+                        UseShellExecute = true,
+                        CreateNoWindow = true
+                    };
+
+                System.Diagnostics.Process.Start(startInfo);
+
+                //WindowsMediaPlayer vlibrasPlayer = new WindowsMediaPlayer();
+                //axWindowsMediaPlayer1.uiMode = "none";
+                //axWindowsMediaPlayer1.settings.autoStart = true;
+                //axWindowsMediaPlayer1.settings.volume = 100;
+                //axWindowsMediaPlayer1.settings.mute = false;
+                //axWindowsMediaPlayer1.settings.setMode("loop", true);
+
+                //vlibrasPlayer.URL = vlibrasPath;
+                //vlibrasPlayer.controls.play();
+
+
+
+
+            }
+                catch (Exception ex)
+                {
+                    // Trata qualquer erros que occurem durante o processo
+                    MessageBox.Show("Erro ao iniciar o VLibras Player: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+     }
 }
+

@@ -1,16 +1,19 @@
 using Microsoft.Data.SqlClient;
-using MySql.Data.MySqlClient;
+using RestauranteUnicode.Views;
 using RestauranteUnicode.Views.Cadastrar;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace RestauranteUnicode
 {
-    public partial class RestauranteUnicode : Form
+    public partial class Login : Form
     {
-        public RestauranteUnicode()
-        {            
+        string perfil_id;
+        public Login()
+        {
             InitializeComponent();
         }
 
@@ -24,96 +27,123 @@ namespace RestauranteUnicode
             this.Close();
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var stgAcesso = ConfigurationManager.ConnectionStrings["stgAcesso"].ConnectionString;
+        //private void btnLogin_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        var stgAcesso = ConfigurationManager.ConnectionStrings["stgAcesso"].ConnectionString;
 
-                string email = txtEmail.Text.Trim();
-                string senha = txtSenha.Text.Trim();
+        //        string email = textBox1.Text.Trim().ToLower(CultureInfo.InvariantCulture);
+        //        string senha = textBox2.Text.Trim().ToLower(CultureInfo.InvariantCulture);
 
-                if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(senha))
-                {
-                    MessageBox.Show("preencha todos os campos!");
-                    return;
-                }
-                else
-                {
-                    try
-                    {
-                        MySqlConnection con = new MySqlConnection(stgAcesso);
-                        con.Open();
+        //        if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(senha))
+        //        {
+        //            MessageBox.Show("preencha todos os campos!");
+        //            return;
+        //        }
+        //        else
+        //        {
+        //            try
+        //            {
+        //                SqlConnection con1 = new SqlConnection(stgAcesso);
+        //                con1.Open();
 
-                        string sql = "select * from usuarios where email = @email and senha_hash = @senha_hash";
+        //                string sql = "declare @email varchar(50);" +
+        //                             "declare @senha_hash varchar(255);" +
+        //                             $"set @email = '{email}'" +
+        //                             $"set @senha_hash =  hashbytes('SHA2_256', '{senha}') " +
+        //                             $"select * from tb_usuarios where email = @email and senha_hash = hashbytes('SHA2_256', @senha_hash) ";
 
-                        MySqlCommand cmd = new MySqlCommand(sql, con);
-                        cmd.Parameters.AddWithValue("@email", email);
-                        cmd.Parameters.AddWithValue("@senha_hash", senha);
-                        cmd.ExecuteNonQuery();
+        //                SqlCommand cmd = new SqlCommand(sql, con1);
+        //                SqlDataReader reader = cmd.ExecuteReader();
 
-                        string emailAdmin = ConfigurationManager.AppSettings["emailAdmin"].ToString();
-                        string senhaAdmin = ConfigurationManager.AppSettings["passwordAdmin"].ToString();
+        //                cmd.Parameters.AddWithValue("@email", SqlDbType.VarChar).Value = email;
+        //                cmd.Parameters.AddWithValue("@senha_hash", SqlDbType.Text).Value = senha;
 
-                        string query = "SELECT perfil_id FROM perfis pf INNER JOIN permissoes per ON pf.id = per.id INNER JOIN telas tl ON tl.id = per.tela_id Order by tl.id;";
+        //                reader.Close();
+        //                cmd.ExecuteNonQuery();
 
-                        MySqlCommand cmd2 = new MySqlCommand(query, con);
+        //                string emailAdmin = ConfigurationManager.AppSettings["emailAdmin"].ToString();
+        //                string senhaAdmin = ConfigurationManager.AppSettings["passwordAdmin"].ToString();
 
-                        cmd2.ExecuteNonQuery();
+        //                string query = "declare @perfil_id int; " +
+        //                                "declare @email varchar(50);" +
+        //                                "declare @senha_hash varchar(255);" +
+        //                                $"set @email = '{email}'" +
+        //                                $"set @senha_hash =  hashbytes('SHA2_256', '{senha}') " +
+        //                                $"set @perfil_id = (select perfil_id from tb_usuarios where email = '{email}' and senha_hash =  hashbytes('SHA2_256', '{senha}')); " +
+        //                                "select @perfil_id as perfil_id;";
 
-                        MySqlDataReader reader = cmd2.ExecuteReader();
 
-                        //string operador = query.SingleOrDefault().ToString();                        
+        //                SqlConnection con2 = new SqlConnection(stgAcesso);
+        //                con2.Open();
+        //                SqlCommand cmd2 = new SqlCommand(query, con2);
 
-                        if (reader.Read())
-                        {
-                            string operador = reader["perfil_id"].ToString();
+        //                cmd2.Parameters.AddWithValue("@email", SqlDbType.VarChar).Value = email;
+        //                cmd2.Parameters.AddWithValue("@senha_hash", SqlDbType.Text).Value = senha;
+        //                cmd2.Parameters.Add("@perfil_id", SqlDbType.Int).Value = perfil_id;
+        //                SqlDataReader reader2 = cmd2.ExecuteReader();
+        //                reader2.Close();
 
-                            if (operador == "1")
-                            {
-                                if (email != emailAdmin || senha != senhaAdmin)
-                                    MessageBox.Show("Você não pode acessar o sistema");
-                            }
-                            else
-                                MessageBox.Show("Login Efetuado com sucesso!");
+        //                cmd2.ExecuteNonQuery();
 
-                            switch (operador)
-                            {
-                                case "1":
-                                    var dashboard = new Dashboard();
-                                    dashboard.Show();
-                                    this.Hide();
-                                    break;
+        //                if (reader.Read())
+        //                {
+        //                    string operador = reader["perfil_id"].ToString();
 
-                                case "2":
-                                    var cadastrar = new Cadastrar();
-                                    cadastrar.Show();
-                                    this.Hide();
-                                    break;
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Usuário não encontrado!");
-                            return;
-                        }
-                        reader.Close();
-                        con.Close();
+        //                    if (operador == "1" || operador == "2" || operador == "3")
+        //                    {
+        //                        if (email != emailAdmin || senha != senhaAdmin)
+        //                            MessageBox.Show("Você não pode acessar o sistema");
+        //                        else if (email != reader["email"].ToString() || senha != reader["senha"].ToString())
+        //                            MessageBox.Show("Usuário não encontrado!");
+        //                        return;
+        //                        //else
+        //                        //    MessageBox.Show("Login Efetuado com sucesso!");
+        //                    }
+        //                    else
+        //                        MessageBox.Show("Login Efetuado com sucesso!");
 
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("email ou senha incorretos!" + ex.Message);
-                    }
 
-                }
+        //                    switch (operador)
+        //                    {
+        //                        case "1":
+        //                            var dashboard = new Dashboard();
+        //                            dashboard.Show();
+        //                            this.Hide();
+        //                            break;
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao tentar conectar no banco de dados!" + ex.Message);
-            }
-        }
+        //                        case "2":
+        //                            var cadastrar = new Cadastrar();
+        //                            cadastrar.Show();
+        //                            this.Hide();
+        //                            break;
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    MessageBox.Show("Usuário não encontrado!");
+        //                    return;
+        //                }
+        //                reader.Close();
+        //                con1.Close();
+        //                reader2.Close();
+        //                con2.Close();
+
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                MessageBox.Show("email ou senha incorretos!" + ex.Message);
+        //            }
+
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Erro ao tentar conectar no banco de dados!" + ex.Message);
+        //    }
+        //}
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
@@ -127,7 +157,7 @@ namespace RestauranteUnicode
             {
                 var stgAcesso = ConfigurationManager.ConnectionStrings["stgAcesso"].ConnectionString;
                 //Criando a instância da Conexão
-                using (MySqlConnection conexao = new MySqlConnection(stgAcesso))
+                using (SqlConnection conexao = new SqlConnection(stgAcesso))
                 {
                     //Abrindo a conexão
                     conexao.Open();
@@ -152,7 +182,7 @@ namespace RestauranteUnicode
         {
             if (e.KeyCode == Keys.Enter)
             {
-                btnCadastrar.PerformClick();
+                buttonCustom2.PerformClick();
             }
         }
 
@@ -160,7 +190,7 @@ namespace RestauranteUnicode
         {
             if (e.KeyCode == Keys.Enter)
             {
-                btnLogin.PerformClick();
+                buttonCustom1.PerformClick();
             }
         }
 
@@ -170,5 +200,134 @@ namespace RestauranteUnicode
             Conexao();
         }
 
+        private void buttonCustom1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var stgAcesso = ConfigurationManager.ConnectionStrings["stgAcesso"].ConnectionString;
+
+                string email = textBox1.Text.Trim().ToLower(CultureInfo.InvariantCulture);
+                string senha = textBox2.Text.Trim().ToLower(CultureInfo.InvariantCulture);
+
+                if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(senha))
+                {
+                    MessageBox.Show("preencha todos os campos!");
+                    return;
+                }
+                else
+                {
+                    try
+                    {
+                        SqlConnection con1 = new SqlConnection(stgAcesso);
+                        con1.Open();
+
+                        string sql = "declare @email varchar(50);" +
+                                     "declare @senha_hash varchar(255);" +
+                                     $"set @email = '{email}'" +
+                                     $"set @senha_hash =  hashbytes('SHA2_256', '{senha}') " +
+                                     $"select * from tb_usuarios where email = @email and senha_hash = hashbytes('SHA2_256', @senha_hash) ";
+
+                        SqlCommand cmd = new SqlCommand(sql, con1);
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        cmd.Parameters.AddWithValue("@email", SqlDbType.VarChar).Value = email;
+                        cmd.Parameters.AddWithValue("@senha_hash", SqlDbType.Text).Value = senha;
+
+                        reader.Close();
+                        cmd.ExecuteNonQuery();
+
+                        string emailAdmin = ConfigurationManager.AppSettings["emailAdmin"].ToString();
+                        string senhaAdmin = ConfigurationManager.AppSettings["passwordAdmin"].ToString();
+
+                        string query = "declare @perfil_id int; " +
+                                        "declare @email varchar(50);" +
+                                        "declare @senha_hash varchar(255);" +
+                                        $"set @email = '{email}'" +
+                                        $"set @senha_hash =  hashbytes('SHA2_256', '{senha}') " +
+                                        $"set @perfil_id = (select perfil_id from tb_usuarios where email = '{email}' and senha_hash =  hashbytes('SHA2_256', '{senha}')); " +
+                                        "select @perfil_id as perfil_id;";
+
+
+                        SqlConnection con2 = new SqlConnection(stgAcesso);
+                        con2.Open();
+                        SqlCommand cmd2 = new SqlCommand(query, con2);
+
+                        cmd2.Parameters.AddWithValue("@email", SqlDbType.VarChar).Value = email;
+                        cmd2.Parameters.AddWithValue("@senha_hash", SqlDbType.Text).Value = senha;
+                        cmd2.Parameters.Add("@perfil_id", SqlDbType.Int).Value = perfil_id;
+                        SqlDataReader reader2 = cmd2.ExecuteReader();
+                        reader2.Close();
+
+                        cmd2.ExecuteNonQuery();
+
+                        if (reader.Read())
+                        {
+                            string operador = reader["perfil_id"].ToString();
+
+                            if (operador == "1" || operador == "2" || operador == "3")
+                            {
+                                if (email != emailAdmin || senha != senhaAdmin)
+                                    MessageBox.Show("Você não pode acessar o sistema");
+                                else if (email != reader["email"].ToString() || senha != reader["senha"].ToString())
+                                    MessageBox.Show("Usuário não encontrado!");
+                                return;
+                                //else
+                                //    MessageBox.Show("Login Efetuado com sucesso!");
+                            }
+                            else
+                                MessageBox.Show("Login Efetuado com sucesso!");
+
+
+                            switch (operador)
+                            {
+                                case "1":
+                                    var dashboard = new Dashboard();
+                                    dashboard.Show();
+                                    this.Hide();
+                                    break;
+
+                                case "2":
+                                    var cadastrar = new Cadastrar();
+                                    cadastrar.Show();
+                                    this.Hide();
+                                    break;
+
+                                case "3":
+                                    MainForm mainForm = new MainForm();
+                                    mainForm.Show();
+                                    this.Hide();
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Usuário não encontrado!");
+                            return;
+                        }
+                        reader.Close();
+                        con1.Close();
+                        reader2.Close();
+                        con2.Close();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("email ou senha incorretos!" + ex.Message);
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao tentar conectar no banco de dados!" + ex.Message);
+            }
+        }
+
+        private void buttonCustom2_Click(object sender, EventArgs e)
+        {
+            var cad = new Cadastrar();
+            cad.Show();
+        }
     }
 }

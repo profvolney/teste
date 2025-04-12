@@ -1,0 +1,6 @@
+Retorno de clip():
+Player
+
+Retorno de traduzir():
+PLAYER
+

@@ -1,4 +1,6 @@
-﻿namespace RestauranteUnicode
+﻿using RestauranteUnicode.Models.CustomControls;
+
+namespace RestauranteUnicode
 {
     partial class Dashboard
     {
@@ -30,20 +32,20 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             panel1 = new Panel();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
-            lblNomedoPrato = new Label();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            button1 = new Button();
-            label4 = new Label();
             label5 = new Label();
+            label4 = new Label();
+            button1 = new Button();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
             pictureBox1 = new PictureBox();
+            lblNomedoPrato = new Label();
+            textBox6 = new TextBox();
+            textBox5 = new TextBox();
+            textBox4 = new TextBox();
+            textBox3 = new TextBox();
+            textBox2 = new TextBox();
+            textBox1 = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -67,105 +69,35 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1289, 715);
+            panel1.Size = new Size(1289, 664);
             panel1.TabIndex = 0;
             // 
-            // textBox1
+            // label5
             // 
-            textBox1.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(249, 131);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(282, 43);
-            textBox1.TabIndex = 0;
+            label5.AutoSize = true;
+            label5.Font = new Font("Microsoft Sans Serif", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Location = new Point(641, 95);
+            label5.Name = "label5";
+            label5.Size = new Size(175, 33);
+            label5.TabIndex = 16;
+            label5.Text = "Ingredientes";
+            label5.TextAlign = ContentAlignment.TopCenter;
             // 
-            // textBox2
+            // label4
             // 
-            textBox2.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(249, 230);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(282, 43);
-            textBox2.TabIndex = 1;
-            // 
-            // textBox3
-            // 
-            textBox3.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox3.Location = new Point(249, 326);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(282, 43);
-            textBox3.TabIndex = 2;
-            // 
-            // textBox4
-            // 
-            textBox4.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox4.Location = new Point(641, 131);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(282, 43);
-            textBox4.TabIndex = 3;
-            // 
-            // textBox5
-            // 
-            textBox5.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox5.Location = new Point(641, 230);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(282, 43);
-            textBox5.TabIndex = 4;
-            // 
-            // textBox6
-            // 
-            textBox6.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox6.Location = new Point(641, 326);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(282, 43);
-            textBox6.TabIndex = 5;
-            // 
-            // lblNomedoPrato
-            // 
-            lblNomedoPrato.AutoSize = true;
-            lblNomedoPrato.Font = new Font("Arial Rounded MT Bold", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblNomedoPrato.Location = new Point(249, 85);
-            lblNomedoPrato.Name = "lblNomedoPrato";
-            lblNomedoPrato.Size = new Size(92, 33);
-            lblNomedoPrato.TabIndex = 9;
-            lblNomedoPrato.Text = "Prato";
-            lblNomedoPrato.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Arial Rounded MT Bold", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(249, 194);
-            label1.Name = "label1";
-            label1.Size = new Size(159, 33);
-            label1.TabIndex = 11;
-            label1.Text = "Descrição";
-            label1.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Arial Rounded MT Bold", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(249, 290);
-            label2.Name = "label2";
-            label2.Size = new Size(99, 33);
-            label2.TabIndex = 12;
-            label2.Text = "Preço";
-            label2.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Arial Rounded MT Bold", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(641, 290);
-            label3.Name = "label3";
-            label3.Size = new Size(158, 33);
-            label3.TabIndex = 13;
-            label3.Text = "Opcionais";
-            label3.TextAlign = ContentAlignment.TopCenter;
+            label4.AutoSize = true;
+            label4.Font = new Font("Microsoft Sans Serif", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(641, 194);
+            label4.Name = "label4";
+            label4.Size = new Size(137, 33);
+            label4.TabIndex = 15;
+            label4.Text = "Recheios";
+            label4.TextAlign = ContentAlignment.TopCenter;
             // 
             // button1
             // 
             button1.BackColor = Color.Tomato;
-            button1.Font = new Font("Showcard Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = SystemColors.ControlLightLight;
             button1.Location = new Point(920, 487);
             button1.Name = "button1";
@@ -175,27 +107,38 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
-            // label4
+            // label3
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Arial Rounded MT Bold", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(641, 194);
-            label4.Name = "label4";
-            label4.Size = new Size(147, 33);
-            label4.TabIndex = 15;
-            label4.Text = "Recheios";
-            label4.TextAlign = ContentAlignment.TopCenter;
+            label3.AutoSize = true;
+            label3.Font = new Font("Microsoft Sans Serif", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(641, 290);
+            label3.Name = "label3";
+            label3.Size = new Size(146, 33);
+            label3.TabIndex = 13;
+            label3.Text = "Opcionais";
+            label3.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label5
+            // label2
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Arial Rounded MT Bold", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(641, 95);
-            label5.Name = "label5";
-            label5.Size = new Size(194, 33);
-            label5.TabIndex = 16;
-            label5.Text = "Ingredientes";
-            label5.TextAlign = ContentAlignment.TopCenter;
+            label2.AutoSize = true;
+            label2.Font = new Font("Microsoft Sans Serif", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(249, 290);
+            label2.Name = "label2";
+            label2.Size = new Size(91, 33);
+            label2.TabIndex = 12;
+            label2.Text = "Preço";
+            label2.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Microsoft Sans Serif", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(249, 194);
+            label1.Name = "label1";
+            label1.Size = new Size(146, 33);
+            label1.TabIndex = 11;
+            label1.Text = "Descrição";
+            label1.TextAlign = ContentAlignment.TopCenter;
             // 
             // pictureBox1
             // 
@@ -207,13 +150,73 @@
             pictureBox1.TabIndex = 10;
             pictureBox1.TabStop = false;
             // 
+            // lblNomedoPrato
+            // 
+            lblNomedoPrato.AutoSize = true;
+            lblNomedoPrato.Font = new Font("Microsoft Sans Serif", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNomedoPrato.Location = new Point(249, 85);
+            lblNomedoPrato.Name = "lblNomedoPrato";
+            lblNomedoPrato.Size = new Size(84, 33);
+            lblNomedoPrato.TabIndex = 9;
+            lblNomedoPrato.Text = "Prato";
+            lblNomedoPrato.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // textBox6
+            // 
+            textBox6.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox6.Location = new Point(641, 326);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(282, 43);
+            textBox6.TabIndex = 5;
+            // 
+            // textBox5
+            // 
+            textBox5.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox5.Location = new Point(641, 230);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(282, 43);
+            textBox5.TabIndex = 4;
+            // 
+            // textBox4
+            // 
+            textBox4.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox4.Location = new Point(641, 131);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(282, 43);
+            textBox4.TabIndex = 3;
+            // 
+            // textBox3
+            // 
+            textBox3.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox3.Location = new Point(249, 326);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(282, 43);
+            textBox3.TabIndex = 2;
+            // 
+            // textBox2
+            // 
+            textBox2.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox2.Location = new Point(249, 230);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(282, 43);
+            textBox2.TabIndex = 1;
+            // 
+            // textBox1
+            // 
+            textBox1.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox1.Location = new Point(249, 131);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(282, 43);
+            textBox1.TabIndex = 0;
+            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 192, 128);
-            ClientSize = new Size(1289, 715);
+            ClientSize = new Size(1289, 664);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "Dashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Dashboard";
@@ -241,5 +244,6 @@
         private Label label3;
         private Label label2;
         private PictureBox pictureBox1;
+        private ButtonCustom buttonCustom1;
     }
 }
