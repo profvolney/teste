@@ -221,102 +221,81 @@ namespace RestauranteUnicode
                         SqlConnection con1 = new SqlConnection(stgAcesso);
                         con1.Open();
 
-                        string sql = "declare @email varchar(50);" +
-                                     "declare @senha_hash varchar(255);" +
-                                     $"set @email = '{email}'" +
-                                     $"set @senha_hash =  hashbytes('SHA2_256', '{senha}') " +
-                                     $"select * from tb_usuarios where email = @email and senha_hash = hashbytes('SHA2_256', @senha_hash) ";
+                        string sql =
+                                    "declare @email varchar(50);" +
+                                    "declare @senha_hash varchar(255);" +
+                                    $"set @email = '{email}'" +
+                                    $"set @senha_hash = '{senha}'" +
+                                    $"select perfil_id, * from tb_usuarios where ( email = @email and senha_hash = hashbytes('SHA2_256', @senha_hash)) ";
 
-                        SqlCommand cmd = new SqlCommand(sql, con1);
-                        SqlDataReader reader = cmd.ExecuteReader();
-
-                        cmd.Parameters.AddWithValue("@email", SqlDbType.VarChar).Value = email;
-                        cmd.Parameters.AddWithValue("@senha_hash", SqlDbType.Text).Value = senha;
-
-                        reader.Close();
-                        cmd.ExecuteNonQuery();
-
-                        string emailAdmin = ConfigurationManager.AppSettings["emailAdmin"].ToString();
-                        string senhaAdmin = ConfigurationManager.AppSettings["passwordAdmin"].ToString();
-
-                        string query = "declare @perfil_id int; " +
-                                        "declare @email varchar(50);" +
-                                        "declare @senha_hash varchar(255);" +
-                                        $"set @email = '{email}'" +
-                                        $"set @senha_hash =  hashbytes('SHA2_256', '{senha}') " +
-                                        $"set @perfil_id = (select perfil_id from tb_usuarios where email = '{email}' and senha_hash =  hashbytes('SHA2_256', '{senha}')); " +
-                                        "select @perfil_id as perfil_id;";
-
-
-                        SqlConnection con2 = new SqlConnection(stgAcesso);
-                        con2.Open();
-                        SqlCommand cmd2 = new SqlCommand(query, con2);
-
-                        cmd2.Parameters.AddWithValue("@email", SqlDbType.VarChar).Value = email;
-                        cmd2.Parameters.AddWithValue("@senha_hash", SqlDbType.Text).Value = senha;
-                        cmd2.Parameters.Add("@perfil_id", SqlDbType.Int).Value = perfil_id;
-                        SqlDataReader reader2 = cmd2.ExecuteReader();
-                        reader2.Close();
-
-                        cmd2.ExecuteNonQuery();
-
-                        if (reader.Read())
+                        using (SqlCommand cmd = new SqlCommand(sql, con1))
                         {
-                            string operador = reader["perfil_id"].ToString();
+                            string emailAdmin = ConfigurationManager.AppSettings["emailAdmin"].ToString();
+                            string senhaAdmin = ConfigurationManager.AppSettings["passwordAdmin"].ToString();                            
 
-                            if (operador == "1" || operador == "2" || operador == "3")
+                            cmd.ExecuteNonQuery();
+                            using (SqlDataReader reader = cmd.ExecuteReader())
                             {
-                                if (email != emailAdmin || senha != senhaAdmin)
-                                    MessageBox.Show("Você não pode acessar o sistema");
-                                else if (email != reader["email"].ToString() || senha != reader["senha"].ToString())
-                                    MessageBox.Show("Usuário não encontrado!");
-                                return;
-                                //else
-                                //    MessageBox.Show("Login Efetuado com sucesso!");
-                            }
-                            else
-                                MessageBox.Show("Login Efetuado com sucesso!");
+                                cmd.Dispose();
+                                if (reader.Read())
+                                {
+                                    string operador = reader["perfil_id"].ToString();
 
+                                    //SELECT tela_id, perfil_id, pode_criar, pode_editar, pode_excluir
+                                    //FROM tb_perfis pf
+                                    //INNER JOIN tb_permissoes per
+                                    //ON pf.id = per.id
+                                    //INNER JOIN tb_telas tl
+                                    //ON tl.telas_id = per.tela_id
+                                    //Order by tl.telas_id;
 
-                            switch (operador)
-                            {
-                                case "1":
-                                    var dashboard = new Dashboard();
-                                    dashboard.Show();
-                                    this.Hide();
-                                    break;
+                                    string tela = reader["tela_id"].ToString();
 
-                                case "2":
-                                    var cadastrar = new Cadastrar();
-                                    cadastrar.Show();
-                                    this.Hide();
-                                    break;
+                                    string nomeUsuario = textBox1.Text.Substring(0, 12).ToLower();
 
-                                case "3":
-                                    MainForm mainForm = new MainForm();
-                                    mainForm.Show();
-                                    this.Hide();
-                                    break;
-                            }
+                                    if (operador == "1" || operador == "2" || operador == "3")
+                                    {
+                                            if (email != emailAdmin || senha != senhaAdmin)
+                                            switch (operador)
+                                            {
+                                                case "1":
+                                                    var dashboard = new Dashboard();
+                                                    dashboard.Show();
+                                                    this.Hide();
+                                                    break;
+                                                
+                                                case "2":
+                                                    MainForm mainForm = new MainForm();
+                                                    mainForm.Show();
+                                                    this.Hide();
+
+                                                    MessageBox.Show($"Bem-vindo de volta {nomeUsuario}!", 
+                                                        "Boas vindas!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    break;
+
+                                                case "3":
+                                                    var cadastrar = new Cadastrar();
+                                                    cadastrar.Show();
+                                                    this.Hide();
+                                                    break;
+                                            }
+                                        else if (email != reader["email"].ToString() || senha != reader["senha"].ToString())
+                                            MessageBox.Show("Usuário não encontrado! " +
+                                                "Cadastre uma nova conta clicando no botão 'Cadastre-se'");
+                                        return;
+                                    }
+                                    else
+                                        MessageBox.Show("Login Efetuado com sucesso!");
+                                }
+                            }    
                         }
-                        else
-                        {
-                            MessageBox.Show("Usuário não encontrado!");
-                            return;
-                        }
-                        reader.Close();
                         con1.Close();
-                        reader2.Close();
-                        con2.Close();
-
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("email ou senha incorretos!" + ex.Message);
+                        MessageBox.Show("Email ou senha incorretos! " + ex.Message);
                     }
-
-                }
-
+                };                            
             }
             catch (Exception ex)
             {
